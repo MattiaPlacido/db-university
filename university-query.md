@@ -1,3 +1,5 @@
+SELECT
+
 1. Selezionare tutti gli studenti nati nel 1990 (160)
    1 : select \* from students where year(date_of_birth) = 1990;
 
@@ -29,7 +31,7 @@
    FROM teachers where phone is null
 
 9. Inserire nella tabella degli studenti un nuovo record con i propri dati (per il campo
-   degree_id, inserire un valore casuale)
+   degree*id, inserire un valore casuale)
    9:
    INSERT INTO students (name, surname, date_of_birth, fiscal_code, enrolment_date, registration_number, email, degree_id)
    VALUES (
@@ -40,8 +42,24 @@
    '2024-09-12',
    '71117',
    'placido.mattia@gmail.com',
-   FLOOR(RAND() _ (SELECT COUNT(_) FROM degrees)) + 1
+   FLOOR(RAND() * (SELECT COUNT(\_) FROM degrees)) + 1
    );
 
 10. Cambiare il numero dell’ufficio del professor Pietro Rizzo in 126
+    UPDATE teachers
+    SET office_number = 126
+    WHERE teacher_id = 58 ;
+
+    oppure
+
+    UPDATE teachers
+    SET office_number = 126
+    WHERE name = 'Pietro' AND surname = 'Rizzo';
+
+    ma mi dice che non è sicuro updatare senza utilizzare la key, anche dopo aver disabilitato la safe mode
+
 11. Eliminare dalla tabella studenti il record creato precedentemente al punto 9
+
+    sapendo l'id : DELETE FROM students WHERE student_id = 5001;
+
+    oppure DELETE FROM student WHERE name = "Mattia" AND surname = "Placido";
